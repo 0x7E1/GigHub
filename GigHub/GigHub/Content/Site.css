@@ -18,7 +18,6 @@
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
-select,
 textarea {
     max-width: 280px;
 }
@@ -28,6 +27,7 @@ textarea {
 ////////////////////////*/
 
 .navbar-inverse {
+    color: #ffffff;
     background-color: #ff4342;
     border-color: #ff9998;
 }
@@ -48,22 +48,40 @@ textarea {
 h2,
 .h2 {
     font-family: Arial;
-    font-size: 20px;
-    margin-top: 12px;
-    margin-bottom: 40px;
-    margin-left: 30px;
+    font-size: 25px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    margin-left: 5px;
 }
 
 .form-group {
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
 .form-control {
+    width: 100%;
+    height: 37px;
+    padding: 6px 15px;
     font-size: 17px;
-    padding: 20px 20px;
-    -ms-border-radius: 15px;
-    border-radius: 15px;
+    border-radius: 17px;
+}
+
+    .form-control:focus {
+        border-color: #ff9291;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+label {
+    color: #777777;
+    margin-bottom: 2px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+select.form-control {
+    max-width: 150px;
 }
 
 .btn-lg {
@@ -80,10 +98,11 @@ h2,
     border-color: #ff9291;
 }
 
-.navbar > .container .navbar-brand {
+.navbar-brand {
     margin-left: 15px;
     font-family: Monoton;
     font-size: 35px;
+    text-shadow: -4px -4px 1px rgba(0, 0, 0, 0.4);
 }
 
 .navbar-nav {
@@ -96,3 +115,23 @@ h2,
     font-family: Nunito;
     font-size: 15px;
 }
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: rgba(189, 35, 34, 0.5);
+}
+
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.dropdown-menu {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+        color: #ff4342;
+        text-decoration: none;
+        background-color: #fafafa;
+    }
