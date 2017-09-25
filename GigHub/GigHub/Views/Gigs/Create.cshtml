@@ -1,4 +1,5 @@
-﻿@model GigHub.ViewModels.GigFormViewModel
+﻿@using System.Globalization
+@model GigHub.ViewModels.GigFormViewModel
 @{
     ViewBag.Title = "Add a gig";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,19 +9,21 @@
 
 @using (Html.BeginForm("Create", "Gigs"))
 {
+    <p class="alert alert-info">All fields are <strong >required</strong>.</p>
+    @Html.AntiForgeryToken()
     <div class="form-group">
         @Html.LabelFor(m => m.Venue)
-        @Html.TextBoxFor(m => m.Venue, new { @class = "form-control", placeholder = "Type a vanue of gig" })
+        @Html.TextBoxFor(m => m.Venue, new { @class = "form-control", placeholder = "Type a vanue of gig", autofocus = "true" })
         @Html.ValidationMessageFor(m => m.Venue)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Date)
-        @Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", placeholder = DateTime.Now.ToShortDateString() })
         @Html.ValidationMessageFor(m => m.Date)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Time)
-        @Html.TextBoxFor(m => m.Time, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Time, new { @class = "form-control", placeholder = "20:00" })
         @Html.ValidationMessageFor(m => m.Time)
     </div>
     <div class="form-group">
