@@ -31,78 +31,6 @@ span.field-validation-error {
     Bootstrap Overrides
 ////////////////////////*/
 
-.navbar-inverse {
-    color: #ffffff;
-    background-color: #ff4342;
-    border-color: #ff9998;
-}
-
-.navbar-inverse .navbar-nav > li > a {
-    color: #ffffff;
-}
-
-.navbar-inverse .navbar-brand {
-    color: #ffffff;
-}
-
-.field-validation-error {
-    font-size: 14px;
-    margin-left: 15px;
-}
-
-h2,
-.h2 {
-    font-family: Arial;
-    font-size: 25px;
-    margin-top: 35px;
-    margin-bottom: 15px;
-    margin-left: 5px;
-}
-
-.form-group {
-    font-size: 18px;
-    margin-bottom: 20px
-}
-
-.form-control {
-    width: 100%;
-    height: 37px;
-    padding: 6px 15px;
-    font-size: 17px;
-    border-radius: 17px;
-}
-
-    .form-control:focus {
-        border-color: #ff9291;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-    }
-
-label {
-    color: #777777;
-    margin-bottom: 2px;
-    margin-left: 15px;
-    font-weight: bold;
-}
-
-select.form-control {
-    max-width: 150px;
-}
-
-.btn-lg {
-    padding: 5px 19px;
-    font-size: 18px;
-    line-height: 1.33;
-    -ms-border-radius: 15px;
-    border-radius: 15px;
-}
-
-.btn-danger {
-    color: #ffffff;
-    background-color: #ff4342;
-    border-color: #ff9291;
-}
-
 .navbar-brand {
     margin-left: 15px;
     font-family: Monoton;
@@ -135,11 +63,104 @@ select.form-control {
     box-shadow: none;
 }
 
-    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-        color: #ff4342;
-        text-decoration: none;
-        background-color: #fafafa;
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #ff4342;
+    text-decoration: none;
+    background-color: #fafafa;
+}
+
+.navbar-inverse {
+    color: #ffffff;
+    background-color: #ff4342;
+    border-color: #ff9998;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.field-validation-error {
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+h2,
+.h2 {
+    font-family: Arial;
+    font-size: 25px;
+    margin-bottom: 15px;
+    margin-left: 5px;
+}
+
+label {
+    color: #777777;
+    margin-bottom: 2px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+select.form-control {
+    max-width: 150px;
+}
+
+.alert {
+    padding: 5px 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-radius: 18px;
+}
+
+.alert-info {
+    width: 175px;
+    font-size: 13px;
+}
+
+.form-group {
+    font-size: 18px;
+    margin-bottom: 20px
+}
+
+.form-control {
+    width: 100%;
+    height: 37px;
+    padding: 6px 15px;
+    font-size: 17px;
+    border-radius: 17px;
+}
+
+    #Date {
+        width: 120px;
     }
+
+    #Time {
+        width: 75px;
+    }
+
+    .form-control:focus {
+        border-color: #ff9291;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+.btn-lg {
+    padding: 5px 19px;
+    font-size: 18px;
+    line-height: 1.33;
+    -ms-border-radius: 15px;
+    border-radius: 15px;
+}
+
+.btn-danger {
+    color: #ffffff;
+    background-color: #ff4342;
+    border-color: #ff9291;
+}
+
+
 
 /*////////////////////////
     Page-level styles
@@ -159,8 +180,7 @@ select.form-control {
         background: #ff4342;
         color: #ffffff;
         text-align: center;
-        width: 60px;
-        
+        width: 55px;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         border-bottom-left-radius: 10px;
@@ -171,16 +191,16 @@ select.form-control {
             text-transform: uppercase;
             font-size: 14px;
             font-weight: bold;
-            padding: 2px 14px;
+            padding: 2px
         }
 
         .gigs > li .date .day {
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
             background: #eeeeee;
             color: #3d3d3d;
             font-size: 18px;
             font-weight: 700;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
 
         .gigs > li .details {
