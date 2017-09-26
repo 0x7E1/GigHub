@@ -27,6 +27,39 @@ span.field-validation-error {
     font-weight: bold;
 }
 
+.heading {
+    margin-top: 0;
+    font-family: Montserrat;
+    font-weight: 300;
+}
+
+h2,
+.h2 {
+    font-family: Arial;
+    font-size: 25px;
+    margin-bottom: 15px;
+    margin-left: 5px;
+}
+
+label {
+    color: #777777;
+    margin-bottom: 2px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+select.form-control {
+    max-width: 150px;
+}
+
+.voffset2 { margin-top: 2px; }
+.voffset5 { margin-top: 5px; }
+.voffset10 { margin-top: 10px; }
+.voffset20 { margin-top: 20px; }
+.voffset30 { margin-top: 30px; }
+.voffset40 { margin-top: 40px; }
+.voffset80 { margin-top: 80px; }
+
 /*////////////////////////
     Bootstrap Overrides
 ////////////////////////*/
@@ -86,25 +119,6 @@ span.field-validation-error {
 .field-validation-error {
     font-size: 14px;
     margin-left: 15px;
-}
-
-h2,
-.h2 {
-    font-family: Arial;
-    font-size: 25px;
-    margin-bottom: 15px;
-    margin-left: 5px;
-}
-
-label {
-    color: #777777;
-    margin-bottom: 2px;
-    margin-left: 10px;
-    font-weight: bold;
-}
-
-select.form-control {
-    max-width: 150px;
 }
 
 .alert {
@@ -168,12 +182,18 @@ select.form-control {
 
 .gigs {
     list-style: none;
+    width: 330px;
 }
 
     .gigs > li {
         font-family: Nunito;
         position: relative;
         margin-bottom: 30px;
+    }
+
+    .gigs > li .pull-right {
+        float: right !important;
+        margin-top: 8px;
     }
 
     .gigs > li .date {
