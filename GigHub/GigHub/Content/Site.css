@@ -29,6 +29,7 @@ span.field-validation-error {
 
 .heading {
     margin-top: 0;
+    margin-left: 40px;
     font-family: Montserrat;
     font-weight: 300;
 }
@@ -133,6 +134,10 @@ select.form-control {
     font-size: 13px;
 }
 
+.form-horizontal .control-label {
+    text-align: left;
+}
+
 .form-group {
     font-size: 18px;
     margin-bottom: 20px
@@ -147,11 +152,13 @@ select.form-control {
 }
 
     #Date {
-        width: 120px;
+        width: 150px;
+        text-align: center;
     }
 
     #Time {
-        width: 75px;
+        width: 90px;
+        text-align: center;
     }
 
     .form-control:focus {
@@ -172,6 +179,56 @@ select.form-control {
     color: #ffffff;
     background-color: #ff4342;
     border-color: #ff9291;
+}
+
+.follow {
+    color: #5589e9;
+}
+
+.follow:hover {
+    color: #89c6ff;
+    text-decoration: none; 
+    background-color: transparent;
+}
+
+.btn-going {
+    color: #ff4342;
+    -ms-border-radius: 13px;
+    border-radius: 13px;
+    border-color: #ffb5b5;
+    background-color: #fff7f7;
+}
+
+    .btn-going:hover {
+        font-weight: bold;
+        color: white;
+        border-color: #fe9998;
+        background-color: rgb(254, 67, 66);
+    }
+
+
+.btn-going-touched {
+    -ms-border-radius: 13px;
+    border-radius: 13px;
+    color: white;
+    border-color: #fe9998;
+    background-color: rgb(254, 67, 66);
+}
+
+.btn-going-touched:focus {
+    color: white;
+    border-color: #fe9998;
+    background-color: rgb(254, 67, 66);
+}
+
+.btn-going-touched:hover {
+    color: white;
+    border-color: white;
+    background-color: rgb(167, 65, 65);
+}
+
+.btn-remove {
+    border-radius: 16px;
 }
 
 
@@ -196,7 +253,7 @@ select.form-control {
         margin-top: 8px;
     }
 
-    .gigs > li .date {
+.gigs > li .date {
         background: #ff4342;
         color: #ffffff;
         text-align: center;

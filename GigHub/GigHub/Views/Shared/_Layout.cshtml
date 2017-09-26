@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">  
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,900|Montserrat:300,400,500,700|Monoton|Roboto+Mono:400,700&amp;subset=cyrillic" rel="stylesheet">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
@@ -18,13 +19,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("GigHub", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", title = "Go to home page"})
+                @Html.ActionLink("GigHub", $"Index", $"Home", new { area = "" }, new { @class = "navbar-brand", title = "Go to home page"})
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Add a Gig", "Create", "Gigs")</li>
+                    <li>@Html.ActionLink("Add a Gig", $"Create", $"Gigs")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Partial($"_LoginPartial")
             </div>
         </div>
     </div>
@@ -32,7 +33,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Powered by ASP.NET</p>
+            <p align="center">&copy; @DateTime.Now.Year - Powered by <b>Exadel Developers School</b></p>
         </footer>
     </div>
 

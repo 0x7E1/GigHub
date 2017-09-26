@@ -10,7 +10,7 @@
         <li>
             @if (Model.ShowActions)
             {
-                <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendatce">Going?</button>
+                <button class="btn btn-going pull-right js-toggle-attendatce" data-gig-id="@gig.Id">Going?</button>
             }
             <div class="date">
                 <div class="month">
@@ -23,14 +23,14 @@
             <div class="details">
                 <span class="artist">
                     @gig.Artist.Name
-                    @if (Model.ShowActions)
-                    {
-                        <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
-                    }
                 </span>
                 <span class="genre">
                     @gig.Genre.Name
                 </span>
+                @if (Model.ShowActions)
+                {
+                    <button class="follow btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
+                }
             </div>
         </li>
     }
@@ -42,11 +42,11 @@
         $(document).ready(function() {
             $(".js-toggle-attendatce").click(function(e) {
                 var button = $(e.target);
-                $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
+                $.post("/api/attendances/attend", { gigId: button.attr("data-gig-id") })
                     .done(function() {
                         button
-                            .removeClass("btn-default")
-                            .addClass("btn-info")
+                            .removeClass("btn-going")
+                            .addClass("btn-going-touched")
                             .text("Going");
                     })
                     .fail(function() {

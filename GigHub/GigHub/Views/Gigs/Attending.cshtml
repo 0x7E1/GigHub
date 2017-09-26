@@ -1,0 +1,51 @@
+﻿@model GigHub.ViewModels.GigsViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1 class="heading">@Model.Heading</h1>
+<ul class="gigs voffset30">
+    @foreach (var gig in Model.UpComingGigs)
+    {
+        <li>
+            <button class="btn btn-danger btn-remove pull-right js-remove-gig" data-gig-id="@gig.Id">Remove</button>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="artist">
+                    @gig.Artist.Name
+                </span>
+                <span class="genre">
+                    @gig.Genre.Name
+                </span>
+            </div>
+        </li>
+    }
+</ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+                $(".js-remove-gig").click(function(e) {
+                    var button = $(e.target);
+                    $.post("/api/attendances/remove", { GigId: button.attr("data-gig-id") })
+                        .done(function () {
+                            button
+                                .text("Removed"),
+                            window.location.reload();
+                        })
+                        .fail(function() {
+                            alert("Something failed!");
+                        });
+                });
+
+        });
+    </script>
+}
