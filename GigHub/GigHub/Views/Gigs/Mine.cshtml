@@ -4,9 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Mine</h2>
+<h1 class="heading">My upcoming Gigs</h1>
 
-<ul class="gigs voffset30">
+<ul class="gigs voffset30" style="font-family: Nunito;">
     @foreach (var gig in Model)
     {
         <li>
@@ -19,6 +19,9 @@
                 </div>
             </div>
             <div class="details">
+                <span style="font-weight: bold; color: rgb(154, 27, 48); font-size: 16px;">
+                    @gig.DateTime.TimeOfDay.ToString("hh\\:mm")
+                </span>
                 <span class="artist">
                     @gig.Venue
                 </span>
