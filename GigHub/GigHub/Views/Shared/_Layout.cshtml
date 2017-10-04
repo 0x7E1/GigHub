@@ -19,11 +19,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("GigHub", $"Index", $"Home", new { area = "" }, new { @class = "navbar-brand", title = "Go to home page"})
+                @Html.ActionLink("GigHub", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", title = "Go to home page"})
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Add a Gig", $"Create", $"Gigs")</li>
+                    <li>@Html.ActionLink("Add a Gig", "Create", "Gigs")</li>
                 </ul>
                 @Html.Partial($"_LoginPartial")
             </div>
