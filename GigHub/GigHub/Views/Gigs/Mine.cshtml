@@ -4,31 +4,87 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="heading">My upcoming Gigs</h1>
+<h2 class="heading">My upcoming Gigs</h2>
 
-<ul class="gigs voffset30" style="font-family: Nunito;">
-    @foreach (var gig in Model)
-    {
-        <li>
-            <div class="date">
-                <div class="month">
-                    @gig.DateTime.ToString("MMM")
+
+@if (!Model.Any())
+{
+    <span style="margin-top: 20px; margin-left: 40px; font-family: Nunito">You don't have any upcoming gigs.</span>
+}
+else
+{
+    <ul class="gigs voffset30" style="font-family: Nunito;">
+        @foreach (var gig in Model)
+        {
+            <li>
+                <div class="date">
+                    <div class="month">
+                        @gig.DateTime.ToString("MMM")
+                    </div>
+                    <div class="day">
+                        @gig.DateTime.ToString("d ")
+                    </div>
                 </div>
-                <div class="day">
-                    @gig.DateTime.ToString("d ")
+                <div class="details">
+                    @*<span style="font-weight: bold; color: rgb(154, 27, 48); font-size: 16px;">
+                            @gig.DateTime.TimeOfDay.ToString("hh\\:mm")
+                        </span>*@
+                    <span class="artist">
+                        @gig.Venue
+                    </span>
+                    <span class="genre">
+                        @gig.Genre.Name
+                    </span>
+                    <div class="actions">
+                        <a href="@Url.Action("Edit", "Gigs", new {id = gig.Id})">Edit</a> |
+                        <a href="#" class="js-cancel-gig" style="color: red" data-gig-id="@gig.Id">Cancel</a>
+                    </div>
                 </div>
-            </div>
-            <div class="details">
-                <span style="font-weight: bold; color: rgb(154, 27, 48); font-size: 16px;">
-                    @gig.DateTime.TimeOfDay.ToString("hh\\:mm")
-                </span>
-                <span class="artist">
-                    @gig.Venue
-                </span>
-                <span class="genre">
-                    @gig.Genre.Name
-                </span>
-            </div>
-        </li>
-    }
-</ul>
+            </li>
+        }
+    </ul>
+}
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-cancel-gig").click(function(e) {
+                var link = $(e.target);
+
+                bootbox.dialog({
+                    title: "Warning!",
+                    message: "Are you sure you want to cancel this gig?",
+                    buttons: {
+                        no: {
+                            label: 'No',
+                            className: 'btn-default',
+                            callback: function() {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: 'Yes',
+                            className: 'btn-danger',
+                            callback: function() {
+                                $.ajax({
+                                        url: "/api/gigs/" + link.attr("data-gig-id"),
+                                        method: "DELETE"
+                                    })
+                                    .done(function() {
+                                        link.parents("li").fadeOut(function() {
+                                            $(this).remove();
+                                        });
+                                    })
+                                    .fail(function() {
+                                        alert("Something failed!");
+                                    });
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

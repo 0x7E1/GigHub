@@ -1,0 +1,21 @@
+﻿@model IEnumerable<GigHub.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Followees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="heading">Artists I'm following:</h2>
+
+@if (!Model.Any())
+{
+    <span style="margin-top: 20px; margin-left: 40px; font-family: Nunito">You don't follow any artists.</span>
+}
+else
+{
+    <ul class="gigs voffset30">
+        @foreach (var gig in Model)
+        {
+            <li style="font-size: 16px; font-weight: bold">@gig.Name</li>
+        }
+    </ul>
+}

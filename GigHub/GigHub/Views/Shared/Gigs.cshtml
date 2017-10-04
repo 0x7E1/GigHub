@@ -1,9 +1,9 @@
 ﻿@model GigHub.ViewModels.GigsViewModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
-<h1 class="heading">@Model.Heading</h1>
+<h2 class="heading">@Model.Heading</h2>
 <ul class="gigs voffset30">
     @foreach (var gig in Model.UpComingGigs)
     {
@@ -56,7 +56,7 @@
 
             $(".js-toggle-follow").click(function(e) {
                 var button = $(e.target);
-                $.post("api/followings", { followeeId: button.attr("data-user-id") })
+                $.post("api/followees/follow", { followeeId: button.attr("data-user-id") })
                     .done(function() {
                         button.text("Following");
                     })

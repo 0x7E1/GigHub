@@ -1,33 +1,49 @@
 ﻿@model GigHub.ViewModels.GigsViewModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Attending";
 }
 
-<h1 class="heading">@Model.Heading</h1>
-<ul class="gigs voffset30">
-    @foreach (var gig in Model.UpComingGigs)
-    {
-        <li>
-            <button class="btn btn-danger btn-remove pull-right js-remove-gig" data-gig-id="@gig.Id">Remove</button>
-            <div class="date">
-                <div class="month">
-                    @gig.DateTime.ToString("MMM")
+<h2 class="heading">@Model.Heading</h2>
+
+@if (!Model.UpComingGigs.Any())
+{
+    <span style="margin-top: 20px; margin-left: 40px; font-family: Nunito">You don't have any attending gigs.</span>
+}
+else
+{
+    <ul class="gigs voffset30">
+        @foreach (var gig in Model.UpComingGigs)
+        {
+            <li>
+                <button class="btn btn-danger btn-remove pull-right js-remove-gig" data-gig-id="@gig.Id">Remove</button>
+                <div class="date">
+                    <div class="month">
+                        @gig.DateTime.ToString("MMM")
+                    </div>
+                    <div class="day">
+                        @gig.DateTime.ToString("d ")
+                    </div>
                 </div>
-                <div class="day">
-                    @gig.DateTime.ToString("d ")
+                <div class="details">
+                    <span class="artist">
+                        @gig.Artist.Name
+                    </span>
+                    <span class="genre">
+                        @gig.Genre.Name
+                    </span>
+                    <div>
+                        @if (gig.IsCancel)
+                        {
+                            <span class="label label-warning">Canceled</span>
+                        }
+                    </div>
                 </div>
-            </div>
-            <div class="details">
-                <span class="artist">
-                    @gig.Artist.Name
-                </span>
-                <span class="genre">
-                    @gig.Genre.Name
-                </span>
-            </div>
-        </li>
-    }
-</ul>
+            </li>
+        }
+    </ul>
+}
+
+
 
 @section scripts
 {
@@ -37,9 +53,9 @@
                     var button = $(e.target);
                     $.post("/api/attendances/remove", { GigId: button.attr("data-gig-id") })
                         .done(function () {
-                            button
-                                .text("Removed"),
-                            window.location.reload();
+                            button.parents("li").fadeOut(function () {
+                                $(this).remove();
+                            });
                         })
                         .fail(function() {
                             alert("Something failed!");

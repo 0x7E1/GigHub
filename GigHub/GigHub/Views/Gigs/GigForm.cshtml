@@ -1,16 +1,16 @@
-﻿@using System.Globalization
-@model GigHub.ViewModels.GigFormViewModel
+﻿@model GigHub.ViewModels.GigFormViewModel
 @{
-    ViewBag.Title = "Add a gig";
+    ViewBag.Title = Model.Heading;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add a new Gig:</h2>
+<h2 class="heading" style="margin-left: 10px;">@Model.Heading</h2>
 
-@using (Html.BeginForm("Create", "Gigs"))
+@using (Html.BeginForm(Model.Action, "Gigs"))
 {
     <p class="alert alert-info">All fields are <strong >required</strong>.</p>
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
     <div class="form-group">
         @Html.LabelFor(m => m.Venue)
         @Html.TextBoxFor(m => m.Venue, new { @class = "form-control", placeholder = "Type a vanue of gig", autofocus = "true" })
@@ -18,17 +18,17 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Date)
-        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", placeholder = DateTime.Now.ToString("d MMM yyy") })
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "Date", placeholder = DateTime.Now.ToString("d MMM yyy") })
         @Html.ValidationMessageFor(m => m.Date)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Time)
-        @Html.TextBoxFor(m => m.Time, new { @class = "form-control", placeholder = "20:00" })
+        @Html.TextBoxFor(m => m.Time, new { @class = "form-control", id = "Time", placeholder = "20:00" })
         @Html.ValidationMessageFor(m => m.Time)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Genre)
-        @Html.DropDownListFor(x => x.Genre, new SelectList(@Model.Genres, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.DropDownListFor(x => x.Genre, new SelectList(@Model.Genres, "Id", "Name"), new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Genre)
     </div>
     <button type="submit" class="btn btn-danger btn-lg">Save</button>

@@ -34,14 +34,6 @@ span.field-validation-error {
     font-weight: 300;
 }
 
-h2,
-.h2 {
-    font-family: Arial;
-    font-size: 25px;
-    margin-bottom: 15px;
-    margin-left: 5px;
-}
-
 label {
     color: #777777;
     margin-bottom: 2px;
@@ -245,7 +237,8 @@ select.form-control {
     .gigs > li {
         font-family: Nunito;
         position: relative;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
+        height: 65px;
     }
 
     .gigs > li .pull-right {
@@ -284,14 +277,27 @@ select.form-control {
             position: absolute;
             top: 0;
             left: 80px;
-            display: block;
         }
 
         .gigs > li .details .artist {
             padding-top: 5px;
             font-weight: bold;
+            display: block;
         }
 
         .gigs > li .details .genre {
             font-size: 12px;
+        }
+
+        .actions {
+            font-size: 13px;
+            display: none;
+        }
+
+        .gigs > li .actions {
+            display: none;
+        }
+
+        .gigs > li:hover .actions {
+            display: block;
         }
