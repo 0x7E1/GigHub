@@ -36,67 +36,74 @@
             <p align="center">&copy; @DateTime.Now.Year - Made in <b>Exadel Developers School</b></p>
         </footer>
     </div>
+    
+@Scripts.Render("~/bundles/lib")
+@RenderSection("scripts", required: false)
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
-    <script type="text/x-template" id="notifications-template">
-        <ul class="notifications">
-            <%
-                _.each(notifications, function(notification) {
-                    if (notification.type == 1) { %>
-                        <li><span class="highlight"><%= notification.gig.artist.name %></span> has canceled the gig at <%= notification.gig.venue %> at <%= notification.gig.dateTime %></li>
-                    <% }
+<script type="text/x-template" id="notifications-template">
+    <ul class="notifications">
+        <%
+            _.each(notifications, function(notification) {
+                if (notification.type == 1) { %>
+                    <li><span class="highlight"><%= notification.gig.artist.name %></span> has canceled the gig at <%= notification.gig.venue %> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %></li>
+                <% }
         
-                    else if (notification.type == 2) {
-                        var changes = [],
-                            originalVenues = [],
-                            newVenues = [];
+                else if (notification.type == 2) {
+                    var changes = [],
+                        originalVenues = [],
+                        newVenues = [];
         
-                        if (notification.originalVenue != notification.gig.venue) {
-                            changes.push('venue');
-                            originalVenues.push(notification.originalVenue);
-                            newVenues.push(notification.gig.venue);
-                        }
-        
-                        if (notification.originalDateTime != notification.gig.dateTime) {
-                            changes.push('date/time');
-                            originalVenues.push(notification.originalDateTime);
-                            newVenues.push(notification.gig.dateTime);
-                        }
-                        %>
-                        <li><span class="highlight"><%= notification.gig.artist.name %></span> has changed the <%= changes.join(' and ') %> of the gig from <%= originalVenues.join('/') %> to <%= newVenues.join('/') %></li>
-                        <%
+                    if (notification.originalVenue != notification.gig.venue) {
+                        changes.push('venue');
+                        originalVenues.push(notification.originalVenue);
+                        newVenues.push(notification.gig.venue);
                     }
-                })
-            %>
-        </ul>
-    </script>
+        
+                    if (notification.originalDateTime != notification.gig.dateTime) {
+                        changes.push('date/time');
+                        originalVenues.push(moment(notification.originalDateTime).format("D MMM HH:mm"));
+                        newVenues.push(moment(notification.gig.dateTime).format("D MMM HH:mm"));
+                    }
+                    %>
+                    <li><span class="highlight"><%= notification.gig.artist.name %></span> has changed the <%= changes.join(' and ') %> of the gig from <span class="highlight"><%= originalVenues.join(' / ') %></span> to <span class="highlight"><%= newVenues.join(' / ') %></span></li>
+                    <%
+                }
+            })
+        %>
+    </ul>
+</script>
+<script>
+    $(document).ready(function () {
+        $.getJSON("/api/notifications", function (notifications) {
+            if (notifications.length == 0)
+                return;
 
-    <script>
-        $(document).ready(function() {
-            $.getJSON("/api/notifications", function (notifications) {
-                if (notifications.length == 0)
-                    return;
+            $(".js-notification-count")
+                .text(notifications.length)
+                .removeClass("hide");
 
-                $(".js-notification-count")
-                    .text(notifications.length)
-                    .removeClass("hide")
-                    .addClass("animated shake");
+            $(".js-animated-bell")
+                .addClass("animated swing");
 
-                $(".notifications").popover({
-                    html: true,
-                    title: "Notifications",
-                    content: function() {
-                        var compiled = _.template($("#notifications-template").html());
-                        return compiled({ notifications: notifications });
-                    },
-                    placement: "bottom",
-                    template: '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
-                });
+            $(".notifications").popover({
+                html: true,
+                title: "Notifications",
+                content: function() {
+                    var compiled = _.template($("#notifications-template").html());
+                    return compiled({ notifications: notifications });
+                },
+                placement: "bottom",
+                template: '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+            }).on("shown.bs.popover", function() {
+                $.post("/api/notifications/markAsRead")
+                    .done(function() {
+                        $(".js-notification-count")
+                            .text("")
+                            .addClass("hide");
+                    });
             });
-        })
-    </script>
+        });
+    })
+</script>
 </body>
 </html>
