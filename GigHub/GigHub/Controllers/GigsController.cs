@@ -144,5 +144,11 @@ namespace GigHub.Controllers
 
             return View(gigs);
         }
+
+        [HttpPost]
+        public ActionResult Search(GigsViewModel viewModel)
+        {
+            return RedirectToAction("Index", "Home", new {search = viewModel.Searchterm});
+        }
     }
 }

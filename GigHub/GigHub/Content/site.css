@@ -303,3 +303,32 @@ div.checkbox label {
   font-size: 13px;
   display: none;
 }
+#searchGigs {
+  margin-left: 40px;
+  margin-top: 25px;
+  width: 200px;
+}
+#searchGigs .form-control {
+  color: #ff9291;
+  font-size: 15px;
+  width: 252px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+#searchGigs .form-control:focus::-webkit-input-placeholder {
+  color: #ff9291;
+}
+#searchGigs .form-control:focus:-ms-input-placeholder {
+  color: #ff9291;
+}
+#searchGigs .form-control:focus::-moz-placeholder {
+  color: #ff9291;
+}
+#searchGigs .form-control:focus:-moz-placeholder {
+  color: #ff9291;
+}
+#searchGigs > .input-group-addon {
+  background-color: #e1e1e1;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+}
